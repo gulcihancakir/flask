@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+  <!-- content -->
+  {% block content %}
+  <div class="wrapper row2">
+    <div id="container" class="clear">
+      <!-- Slider -->
+      <section class="slider">
+        <form method="POST" enctype="multipart/form-data">
+          
+          <label for="fname">Choose file 1</label>
+          <input id="fname" type="file" name="fname1" value="file1" title="abc">
+          <label for="fname1">Choose file 2</label>
+          <input id="fname2" type="file" name="fname2" value="file1">
+          <label for="fname2">Choose file 3</label>
+          <input id="fname2" type="file" name="fname3" value="file1">
+          <input type="submit" value="Upload" name="btn" />
+        </form>
+      </section>
+
+      <section class="slider">
+        {% if result and result1 != None %}
+        <img src="data:image/png;base64,{{ result1 }}" height="284" width="960">
+        {% endif %}
+      </section>
+
+      <section class="slider">
+        {% if result and result1 != None %}
+        <img src="data:image/png;base64,{{ result }}" height="300" width="960">
+        {% endif %}
+      </section>
+
+      <!-- main content -->
+      <div id="homepage">
+        <!-- Services -->
+        <section id="services" class="clear">
+          <article class="two_third">
+            {% if result and result2 != None %}
+            <img src="data:image/png;base64,{{ result2 }}" height="300" width="457">
+            {% endif %}
+          </article>
+
+          <article class="three_third">
+            <ul>
+              {% for i in result_txt %}
+              <li>
+                {{i}}
+              </li>
+              {% endfor %}
+            </ul>
+            <ul>
+              {% for i in result_txt2 %}
+              <li>
+                {{i}}
+              </li>
+              {% endfor %}
+            </ul>
+          </article>
+
+
+        </section>
+        <!-- / Services -->
+        <!-- ########################################################################################## -->
+        <!-- ########################################################################################## -->
+        <!-- ########################################################################################## -->
+        <!-- ########################################################################################## -->
+        <!-- Introduction -->
+
+        <!-- / Introduction -->
+      </div>
+
+      <!-- / content body -->
+    </div>
+  </div>
+ 
+
+
+{%endblock%}

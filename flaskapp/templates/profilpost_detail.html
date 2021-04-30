@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>post detail page</p>
+<p>{{post.post_name}}</p>
+
+<img src="{{post.epoch_image}}" height="300" width="960""> 
+<br>
+<img src="{{post.hypnogram_image}}" height="300" width="960""> 
+<br>
+<img src="{{post.pie_image}}" height="300" width="960""> 
+
+
+<p>{{post.result1}}</p>
+<br>
+<p>{{post.result2}}</p>
+{% endblock %}

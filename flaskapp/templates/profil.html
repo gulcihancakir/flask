@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>profil page</h1>
+<p>Çizilen Grafikler</p>
+{% for i in posts.items %}
+<!-- <p>{{i.post_name}}  {{i.post_time.strftime('%Y-%m-%d-%s')}}</p> -->
+<p>
+<a href="{{url_for('post_detail' , pk=i.id)}}">{{i.post_name}}  {{i.post_time.strftime('%Y-%m-%d-%s')}}</a>
+
+</p>
+
+<!-- <img src="{{i.epoch_image}}" height="300" width="960""> 
+<br>
+<img src="{{i.hypnogram_image}}" height="300" width="960""> 
+<br>
+<img src="{{i.pie_image}}" height="300" width="960""> 
+
+
+<p>{{i.result1}}</p>
+<br>
+<p>{{i.result2}}</p> -->
+
+</div>
+</div>
+{% endfor %}
+{% for page in posts.iter_pages() %}
+{% if page %}
+    <a href="{{url_for('profil', page=page)}}">{{page}}</a>
+{% else %}
+
+{% endif %}
+{% endfor %}
+
+<p>Kullanıcı Bilgileri</p>
+<img src="{{image}}" alt="resim" height="100" width="100" > 
+
+<!-- <img src="{{url_for('static', filename='images/profil_picture/{{current_user.image}}')}}" alt="resim" height="100" width="100" >  -->
+
+
+<p>
+    {{user.name}}
+</p>
+<p>
+    {{user.email}}
+</p>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+{{ messages[0] }}
+
+{% endif %}
+{% endwith %}
+
+  
+    <form method="POST" action="/profil" enctype="multipart/form-data">
+           
+        {{ form.hidden_tag() }}
+        {{form.csrf_token}}
+      
+     <p>
+        {{form.email.label}}
+        {% if form.email.errors %}
+            {{ form.email }}
+                {% for error in form.email.errors %}
+                    {{error}}
+                {% endfor %}
+        {% else %}
+            {{form.email}}
+        {% endif %}
+     </p>
+
+      <p>
+          {{form.name.label}}
+        {{ form.name }}
+      </p>
+      <p>
+        {{form.password.label}}
+      {{ form.password }}
+    </p>
+    
+   
+      <p>
+        {{form.image.label}}  
+        {{form.image}}</p>
+        <button type="submit">Düzenle</button>
+    </form>
+
+
+{% endblock %}

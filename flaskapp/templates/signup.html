@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+    <h3 class="title">Sign Up</h3>
+   
+        {% with messages = get_flashed_messages() %}
+{% if messages %}
+
+        {{ messages[0] }}
+
+{% endif %}
+{% endwith %}
+<form method="POST" action="/signup" enctype="multipart/form-data">
+    {{form.csrf_token}}
+           
+            {{ form.hidden_tag() }}
+           <p>
+               {{ form.name.label }}
+            {{ form.name }}
+           </p>
+         <p>
+             {{ form.email.label }}
+            {{ form.email }}
+         </p>
+          <p>
+              {{ form.password.label }}
+            {{ form.password }}
+          </p>
+         
+
+         
+            <button type="submit">Kayıt Ol</button>
+        </form>
+        <a href="{{ url_for('login') }}">Giriş Yap</a>
+
+  
+
+{% endblock %}
